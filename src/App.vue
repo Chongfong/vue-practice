@@ -24,23 +24,26 @@
 //   },
 // }
 
+import { ref } from 'vue'
+
 // composition api
 export default {
   // setup function
   setup() {
-    const name = 'Donald Trump'
-    const status = 'pending'
-    const tasks = ['Task One', 'Task Two', 'Task Three']
-    const link = 'https://www.google.com'
+    // use "ref" to wrap all reactive variables
+    const name = ref('Donald Trump')
+    const status = ref('pending')
+    const tasks = ref(['Task One', 'Task Two', 'Task Three']) // be careful for the ()
+    const link = ref('https://www.google.com')
 
-    // this function is not active now
+    //change to status.value
     const toggleStatus = () => {
-      if (this.status === 'active') {
-        this.status = 'pending'
-      } else if (this.status === 'pending') {
-        this.status = 'active'
+      if (status.value === 'active') {
+        status.value = 'pending'
+      } else if (status.value === 'pending') {
+        status.value = 'active'
       } else {
-        this.status = 'active'
+        status.value = 'active'
       }
     }
 
