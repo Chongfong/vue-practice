@@ -1,4 +1,5 @@
-<script>
+<!-- use setup here -->
+<script setup>
 //Vue 2
 // export default {
 //   // data function, not object
@@ -27,36 +28,38 @@
 import { ref } from 'vue'
 
 // composition api
-export default {
-  // setup function
-  setup() {
-    // use "ref" to wrap all reactive variables
-    const name = ref('Donald Trump')
-    const status = ref('pending')
-    const tasks = ref(['Task One', 'Task Two', 'Task Three']) // be careful for the ()
-    const link = ref('https://www.google.com')
+// export default {
+//   // setup function
+//   setup() {
+// use "ref" to wrap all reactive variables
+const name = ref('Donald Trump')
+const status = ref('pending')
+const tasks = ref(['Task One', 'Task Two', 'Task Three']) // be careful for the ()
+const link = ref('https://www.google.com')
 
-    //change to status.value
-    const toggleStatus = () => {
-      if (status.value === 'active') {
-        status.value = 'pending'
-      } else if (status.value === 'pending') {
-        status.value = 'active'
-      } else {
-        status.value = 'active'
-      }
-    }
-
-    // inside the setup function
-    return {
-      name,
-      status,
-      tasks,
-      link,
-      toggleStatus,
-    }
-  },
+//change to status.value
+const toggleStatus = () => {
+  if (status.value === 'active') {
+    status.value = 'pending'
+  } else if (status.value === 'pending') {
+    status.value = 'active'
+  } else {
+    status.value = 'active'
+  }
 }
+
+// no need to export and export with script setup
+
+// inside the setup function
+//     return {
+//       name,
+//       status,
+//       tasks,
+//       link,
+//       toggleStatus,
+//     }
+//   },
+// }
 </script>
 
 <template>
