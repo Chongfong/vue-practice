@@ -1,18 +1,40 @@
 <script>
 //Vue 2
+// export default {
+//   // data function, not object
+//   data() {
+//     return {
+//       name: 'Donald Trump',
+//       status: 'pending',
+//       tasks: ['Task One', 'Task Two', 'Task Three'],
+//       link: 'https://www.google.com',
+//     }
+//   },
+//   // methods is an object
+//   methods: {
+//     toggleStatus() {
+//       if (this.status === 'active') {
+//         this.status = 'pending'
+//       } else if (this.status === 'pending') {
+//         this.status = 'active'
+//       } else {
+//         this.status = 'active'
+//       }
+//     },
+//   },
+// }
+
+// composition api
 export default {
-  // data function, not object
-  data() {
-    return {
-      name: 'Donald Trump',
-      status: 'pending',
-      tasks: ['Task One', 'Task Two', 'Task Three'],
-      link: 'https://www.google.com',
-    }
-  },
-  // methods is an object
-  methods: {
-    toggleStatus() {
+  // setup function
+  setup() {
+    const name = 'Donald Trump'
+    const status = 'pending'
+    const tasks = ['Task One', 'Task Two', 'Task Three']
+    const link = 'https://www.google.com'
+
+    // this function is not active now
+    const toggleStatus = () => {
       if (this.status === 'active') {
         this.status = 'pending'
       } else if (this.status === 'pending') {
@@ -20,7 +42,16 @@ export default {
       } else {
         this.status = 'active'
       }
-    },
+    }
+
+    // inside the setup function
+    return {
+      name,
+      status,
+      tasks,
+      link,
+      toggleStatus,
+    }
   },
 }
 </script>
