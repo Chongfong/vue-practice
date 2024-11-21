@@ -56,6 +56,11 @@ const addTask = () => {
   }
 }
 
+const deleteTask = (id) => {
+  tasks.value.splice(id, 1)
+  // or tasks.value = tasks.value.filter((task, index) => index !== id)
+}
+
 // no need to export and export with script setup
 
 // inside the setup function
@@ -84,7 +89,11 @@ const addTask = () => {
 
   <h3>Tasks</h3>
   <ul>
-    <li v-for="task in tasks" v-bind:key="task">{{ task }}</li>
+    <!-- get index -->
+    <li v-for="(task, index) in tasks" v-bind:key="task">
+      <span>{{ task }}</span>
+      <button @click="deleteTask(index)">X</button>
+    </li>
   </ul>
   <!-- <a v-bind:href="link">Click for Google</a> -->
   <a :href="link">Click for Google</a>
