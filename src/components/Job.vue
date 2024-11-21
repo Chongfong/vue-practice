@@ -1,7 +1,26 @@
 <script setup>
-import { defineProps } from 'vue'
-defineProps({
+import { defineProps, ref, computed } from 'vue'
+
+// give props a name to be used
+const props = defineProps({
   job: Object,
+})
+
+const showFullDescription = ref(false)
+
+const toggleDescription = () => {
+  // remember to use .value since it is a ref
+  showFullDescription.value = !showFullDescription.value
+}
+
+// like useEffect in React, but dependencies are automatically tracked by the reactivity system
+const truncatedDescription = computed(() => {
+  let description = props.job.description
+  // remember to use .value since it is a ref
+  if (!showFullDescription.value) {
+    description = description.substring(0, 90) + '...'
+  }
+  return description
 })
 </script>
 
@@ -14,7 +33,12 @@ defineProps({
       </div>
 
       <div class="mb-5">
-        {{ job.description }}
+        <div>
+          {{ truncatedDescription }}
+        </div>
+        <button @click="toggleDescription" class="text-green-500 hover:text-green-600 mb-5">
+          {{ showFullDescription ? 'Show Less' : 'Read More' }}
+        </button>
       </div>
 
       <h3 class="text-green-500 mb-2">{{ job.salary }}</h3>
