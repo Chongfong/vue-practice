@@ -25,7 +25,7 @@
 //   },
 // }
 
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 // composition api
 // export default {
@@ -73,6 +73,16 @@ const deleteTask = (id) => {
 //     }
 //   },
 // }
+
+onMounted(async () => {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+    const data = await response.json()
+    tasks.value = data.map((task) => task.title)
+  } catch (error) {
+    console.log('Error fetching data:', error)
+  }
+})
 </script>
 
 <template>
