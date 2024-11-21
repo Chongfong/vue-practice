@@ -36,6 +36,7 @@ const name = ref('Donald Trump')
 const status = ref('pending')
 const tasks = ref(['Task One', 'Task Two', 'Task Three']) // be careful for the ()
 const link = ref('https://www.google.com')
+const newTask = ref('')
 
 //change to status.value
 const toggleStatus = () => {
@@ -45,6 +46,13 @@ const toggleStatus = () => {
     status.value = 'active'
   } else {
     status.value = 'active'
+  }
+}
+
+const addTask = () => {
+  if (newTask.value.trim() !== '') {
+    tasks.value.push(newTask.value)
+    newTask.value = ''
   }
 }
 
@@ -67,6 +75,12 @@ const toggleStatus = () => {
   <p v-if="status === 'active'">User Is Active</p>
   <p v-else-if="status === 'pending'">User Is Pending</p>
   <p v-else>User Is Not Active</p>
+
+  <!-- prevent default -->
+  <form @submit.prevent="addTask">
+    <input type="text" id="newTask" name="newTask" v-model="newTask" />
+    <button type="submit">Add Task</button>
+  </form>
 
   <h3>Tasks</h3>
   <ul>
