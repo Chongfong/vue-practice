@@ -18,4 +18,10 @@ export default [
   ...pluginVue.configs['flat/essential'],
   oxlint.configs['flat/recommended'],
   skipFormatting,
+
+  {
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
+  },
 ]
