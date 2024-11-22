@@ -26,6 +26,7 @@
 // }
 
 import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 
 // composition api
 // export default {
@@ -105,8 +106,8 @@ onMounted(async () => {
       <button @click="deleteTask(index)">X</button>
     </li>
   </ul>
-  <!-- <a v-bind:href="link">Click for Google</a> -->
-  <a :href="link">Click for Google</a>
+  <!-- <RouterLink v-bind:to="link">Click for Google</RouterLink> -->
+  <RouterLink :to="link">Click for Google</RouterLink>
   <br />
   <!-- <button v-on:click="toggleStatus">Change Status</button> -->
   <button @click="toggleStatus">Change Status</button>
