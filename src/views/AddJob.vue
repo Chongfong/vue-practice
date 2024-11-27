@@ -1,6 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import axios from 'axios'
+import router from '@/router'
 
 const form = reactive({
   type: 'Remote',
@@ -15,6 +16,18 @@ const form = reactive({
     contactPhone: '',
   },
 })
+
+const handleSubmit = async () => {
+  const newJob = {
+    ...form,
+  }
+  try {
+    const response = await axios.post('/api/jobs', newJob)
+    router.push(`/job/${response.data.id}`)
+  } catch (e) {
+    console.error('Error fetching job:', e)
+  }
+}
 </script>
 
 <template>
